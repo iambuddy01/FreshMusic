@@ -1,37 +1,37 @@
-# 🎵 Shruti Music Bot 🎵
+# 🎵 Fresh Music Bot 🎵
 
 <p align="center">
   <img src="ShrutiMusic/assets/equalizer.svg" width="100%" height="500">
 </p>
 
 <div align="center">
-  <h1>🎵 Shruti Music Bot 🎵</h1>
+  <h1>🎵 Fresh Music Bot 🎵</h1>
   
   <p><b>A Powerful Telegram Music Bot to Play Songs in Voice Chats</b></p>
   
   <!-- Bold and vibrant badges with striking combinations -->
   <p>
-    <a href="https://t.me/ShrutiBots">
+    <a href="https://t.me/fine_n_ok">
       <img src="https://img.shields.io/badge/Support%20Channel-FF0000?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000" alt="Support Channel">
     </a>
-    <a href="https://t.me/ShrutiBotSupport">
+    <a href="https://t.me/pyaarkiyatha">
       <img src="https://img.shields.io/badge/Support%20Group-00FF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=FF0000" alt="Support Group">
     </a>
-    <a href="https://t.me/WTF_WhyMeeh">
+    <a href="MehExclusive">
       <img src="https://img.shields.io/badge/Owner-FFFF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=8A2BE2" alt="Owner">
     </a>
   </p>
   
   <!-- Bold social stats with high contrast -->
   <p>
-    <a href="https://github.com/NoxxOP/ShrutiMusic/fork">
-      <img src="https://img.shields.io/github/forks/NoxxOP/ShrutiMusic?style=social&logo=github&labelColor=FF1493&color=00CED1" alt="GitHub Forks">
+    <a href="https://github.com/Nkarmaxexclusive/FreshMusic/fork">
+      <img src="https://img.shields.io/github/forks/Nkarmaxexclusive/FreshMusic?style=social&logo=github&labelColor=FF1493&color=00CED1" alt="GitHub Forks">
     </a>
-    <a href="https://github.com/NoxxOP/ShrutiMusic/stargazers">
-      <img src="https://img.shields.io/github/stars/NoxxOP/ShrutiMusic?style=social&logo=github&labelColor=FF4500&color=32CD32" alt="GitHub Stars">
+    <a href="https://github.com/karmaxexclusive/FreshMusic/stargazers">
+      <img src="https://img.shields.io/github/stars/karmaxexclusive/FreshMusic?style=social&logo=github&labelColor=FF4500&color=32CD32" alt="GitHub Stars">
     </a>
-    <a href="https://github.com/NoxxOP/ShrutiMusic/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/NoxxOP/ShrutiMusic?style=social&logo=github&labelColor=DC143C&color=FFD700" alt="GitHub Contributors">
+    <a href="https://github.com/karmaxexclusive/FreshMusic/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/karmaxexclusive/FreshMusic?style=social&logo=github&labelColor=DC143C&color=FFD700" alt="GitHub Contributors">
     </a>
   </p>
 </div>
@@ -43,17 +43,17 @@
 <div align="center">
   
   ### 🔥 Deploy to Heroku
-  <a href="https://dashboard.heroku.com/new?template=https://github.com/NoxxOP/ShrutiMusic">
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/iambuddy01/ShrutiMusic">
     <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-FF0080?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000080" width="280px" alt="Deploy to Heroku">
   </a>
   
   ### ☁️ Deploy to Render (Free)
-  <a href="https://render.com/deploy?repo=https://github.com/NoxxOP/ShrutiMusic">
+  <a href="https://render.com/deploy?repo=https://github.com/karmaxexclusive/FreshMusic">
     <img src="https://img.shields.io/badge/Deploy%20To%20Render-00FF80?style=for-the-badge&logo=render&logoColor=black&labelColor=800080" width="280px" alt="Deploy to Render">
   </a>
   
   ### 🎵 Simple Music Bot
-  <a href="https://github.com/NoxxOP/ShrutixMusic">
+  <a href="https://github.com/karmaxexclusive/FreshMusic">
     <img src="https://img.shields.io/badge/Simple%20Music%20Bot-FF4000?style=for-the-badge&logo=github&logoColor=white&labelColor=008000" width="280px" alt="Simple Music Bot">
   </a>
   
@@ -80,12 +80,12 @@
 ## 📊 Repository Stats
 
 <div align="center">
-  <img src="https://img.shields.io/github/repo-size/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FF1493&labelColor=000080" alt="Repo Size">
-  <img src="https://img.shields.io/github/issues/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FF4500&labelColor=008B8B" alt="Issues">
-  <img src="https://img.shields.io/github/forks/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=32CD32&labelColor=8B0000" alt="Forks">
-  <img src="https://img.shields.io/github/stars/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FFD700&labelColor=4B0082" alt="Stars">
-  <img src="https://img.shields.io/github/license/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=00CED1&labelColor=DC143C" alt="LICENSE">
-  <img src="https://img.shields.io/github/last-commit/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FF6347&labelColor=2F4F4F" alt="Last Commit">
+  <img src="https://img.shields.io/github/repo-size/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FF1493&labelColor=000080" alt="Repo Size">
+  <img src="https://img.shields.io/github/issues/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FF4500&labelColor=008B8B" alt="Issues">
+  <img src="https://img.shields.io/github/forks/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=32CD32&labelColor=8B0000" alt="Forks">
+  <img src="https://img.shields.io/github/stars/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FFD700&labelColor=4B0082" alt="Stars">
+  <img src="https://img.shields.io/github/license/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=00CED1&labelColor=DC143C" alt="LICENSE">
+  <img src="https://img.shields.io/github/last-commit/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FF6347&labelColor=2F4F4F" alt="Last Commit">
 </div>
 
 ---
@@ -140,7 +140,7 @@ sudo apt-get install -y nodejs
 #### Clone the Repository
 
 ```bash
-git clone https://github.com/NoxxOP/ShrutiMusic
+git clone https://github.com/iambuddy01/FreshMusic
 ```
 
 ```bash
@@ -236,7 +236,7 @@ Example : `screen -r 108108`
 ## ☁️ Heroku Deployment
 
 <div align="center">
-  <a href="https://dashboard.heroku.com/new?template=https://github.com/NoxxOP/ShrutiMusic">
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/iambuddy01/FreshMusic">
     <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-FF0080?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000080" width="250px" alt="Deploy to Heroku">
   </a>
 </div>
@@ -289,7 +289,7 @@ Use our Session Generator Bot: [@Sessionbbbot](https://t.me/Sessionbbbot)
 
 <div align="center">
   
-**👨‍💻 Main Developer:** [NoxxOP](https://github.com/NoxxOP)
+**👨‍💻 Main Developer:** [karmaxexclusive](https://github.com/karmaxexclusive)
 
 **🙏 Special Thanks:** All contributors who helped make this project better
 
@@ -309,7 +309,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **For any questions or help, join our Support Group**
 
-<a href="https://t.me/ShrutiBotSupport">
+<a href="https://t.me/pyaarkiyatha">
   <img src="https://img.shields.io/badge/Join%20Support%20Group-FF0040?style=for-the-badge&logo=telegram&logoColor=white&labelColor=0080FF" alt="Support Group">
 </a>
 
@@ -319,6 +319,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-**🎵 Enjoy Streaming Music with Shruti Bot! 🎵**
+**🎵 Enjoy Streaming Music with Fresh Bot! 🎵**
 
 </div>
