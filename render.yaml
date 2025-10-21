@@ -3,7 +3,7 @@ services:
     name: FreshMusicBot
     env: python
     plan: free
-    repo: https://github.com/iambuddy01/FreshMusic
+    repo: https://github.com/karmaxexlusive/FreshMusic
     branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: python -m ShrutiMusic
@@ -37,7 +37,7 @@ services:
         required: true
         description: "The username of your bot (without @)"
       - key: UPSTREAM_REPO
-        value: "https://github.com/iambuddy01/FreshMusic"
+        value: "https://github.com/karmaxexclusive/FreshMusic"
         required: false
         description: "URL of your GitHub repository"
       - key: STRING_SESSION
