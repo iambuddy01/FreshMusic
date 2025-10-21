@@ -6,7 +6,7 @@
     "python3",
     "telegram",
     "bot",
-    "ShrutiBots",
+    "FreshBots",
     "MusicBot",
     "telegram-bot",
     "pyrogram"
@@ -44,12 +44,12 @@
     },
     "BOT_USERNAME": {
       "description": "The username of your bot (without @)",
-      "value": "NishaxMusic_bot",
+      "value": "abey_oye_hakla_bot",
       "required": true
     },
     "UPSTREAM_REPO": {
       "description": "URL of your GitHub repository",
-      "value": "https://github.com/iambuddy01/ShrutiMusic",
+      "value": "https://github.com/iambuddy01/FreshMusic",
       "required": false
     },
     "STRING_SESSION": {
