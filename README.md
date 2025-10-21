@@ -3,8 +3,7 @@
 </p>
 
 <div align="center">
-  <img src="![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=35&duration=2000&pause=1000&color=FF1493&center=true&vCenter=true&width=600&lines=Fresh+Music+Repo)
-" alt="Fresh Music Repo">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=35&duration=2000&pause=1000&color=FF1493&center=true&vCenter=true&width=600&lines=Fresh+Music+Repo" alt="Fresh Music Repo">
 </div>
 
 ---
