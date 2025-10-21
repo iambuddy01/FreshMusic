@@ -8,7 +8,9 @@ from ShrutiMusic.utils.database.database import get_vclogger_status, set_vclogge
 from ShrutiMusic.core.call import Nand
 
 
-# ---------------- VC LOGGER TOGGLE ----------------
+# ===================================================
+# 🎤 VC LOGGER TOGGLE COMMAND
+# ===================================================
 
 @app.on_message(filters.command(["vclogger"]) & ~filters.private & ~BANNED_USERS)
 async def toggle_vclogger(_, message: Message):
@@ -21,6 +23,7 @@ async def toggle_vclogger(_, message: Message):
         if member.status not in ("administrator", "creator"):
             return await message.reply_text("❌ Only admins can manage VC Logger!")
 
+    # Show current status if no argument
     if len(message.command) == 1:
         status = await get_vclogger_status(message.chat.id)
         return await message.reply_text(
@@ -35,10 +38,14 @@ async def toggle_vclogger(_, message: Message):
         await set_vclogger_status(message.chat.id, False)
         await message.reply_text("❌ **ᴠᴄʟᴏɢɢᴇʀ ᴅɪsᴀʙʟᴇᴅ!** I’ll stay quiet 🤫")
     else:
-        await message.reply_text("Usage: `/vclogger on | off | yes | no | enable | disable`")
+        await message.reply_text(
+            "Usage: `/vclogger on | off | yes | no | enable | disable`"
+        )
 
 
-# ---------------- VC JOIN / LEAVE MESSAGES ----------------
+# ===================================================
+# 🎶 VC JOIN / LEAVE RANDOM MESSAGES
+# ===================================================
 
 JOIN_MSGS = [
     "🎧 {user} joined the VC — let's vibe!",
@@ -57,25 +64,20 @@ LEAVE_MSGS = [
 ]
 
 
-@Nand.on_participant_joined()
-async def vc_user_joined(_, chat_id: int, user_id: int):
+# ===================================================
+# 🔁 PARTICIPANT CHANGE HANDLER (JOIN / LEAVE)
+# ===================================================
+
+@Nand.on_participants_change()
+async def on_vc_participant_change(_, chat_id: int, user_id: int, joined: bool):
     if not await get_vclogger_status(chat_id):
         return
     try:
         user = await app.get_users(user_id)
-        msg = random.choice(JOIN_MSGS).format(user=user.mention)
-        await app.send_message(chat_id, msg)
-    except Exception:
-        pass
-
-
-@Nand.on_participant_left()
-async def vc_user_left(_, chat_id: int, user_id: int):
-    if not await get_vclogger_status(chat_id):
-        return
-    try:
-        user = await app.get_users(user_id)
-        msg = random.choice(LEAVE_MSGS).format(user=user.mention)
+        if joined:
+            msg = random.choice(JOIN_MSGS).format(user=user.mention)
+        else:
+            msg = random.choice(LEAVE_MSGS).format(user=user.mention)
         await app.send_message(chat_id, msg)
     except Exception:
         pass
