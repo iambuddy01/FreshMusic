@@ -677,30 +677,18 @@ vclogger = {}
 
 
 async def get_vclogger_status(chat_id: int) -> bool:
-    """
-    Returns True if VC Logger is enabled for this chat, otherwise False.
-    Uses in-memory cache to reduce DB reads.
-    """
     if chat_id in vclogger:
         return vclogger[chat_id]
-
     data = await vcloggerdb.find_one({"chat_id": chat_id})
     if not data:
         vclogger[chat_id] = False
         return False
-
-    status = data.get("status", False)
-    vclogger[chat_id] = status
-    return status
+    vclogger[chat_id] = data.get("status", False)
+    return data.get("status", False)
 
 
 async def set_vclogger_status(chat_id: int, status: bool):
-    """
-    Updates VC Logger status for a chat.
-    """
     vclogger[chat_id] = status
     await vcloggerdb.update_one(
-        {"chat_id": chat_id},
-        {"$set": {"status": status}},
-        upsert=True
+        {"chat_id": chat_id}, {"$set": {"status": status}}, upsert=True
     )
