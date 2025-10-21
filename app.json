@@ -22,6 +22,11 @@
       "value": "599574f6aff0a09ebb76305b58e7e9c2",
       "required": true
     },
+    "API_KEY": {
+      "description": "Get this value from https://panel.thequickearn.xyz/signup?ref=NGBM6HYNQKU",
+      "value": "",
+      "required": true
+    },
     "BOT_TOKEN": {
       "description": "A Bot's token from Botfather",
       "value": "",
@@ -49,7 +54,7 @@
     },
     "UPSTREAM_REPO": {
       "description": "URL of your GitHub repository",
-      "value": "https://github.com/iambuddy01/FreshMusic",
+      "value": "https://github.com/iambuddy/FreshMusic",
       "required": false
     },
     "STRING_SESSION": {
@@ -74,7 +79,7 @@
     },
     "LOG_GROUP_ID": {
       "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Do not ever try to put channel ID here.",
-      "value": "-1002847095020",
+      "value": "-1002417142493",
       "required": true
     },
     "SUPPORT_GROUP": {
@@ -84,7 +89,7 @@
     },
     "SUPPORT_CHANNEL": {
       "description": "Your support channel username (without @)",
-      "value": "https://t.me/fine_n_ok",
+      "value": "https://t.me/fine_n_om",
       "required": false
     },
     "INSTAGRAM": {
@@ -99,17 +104,12 @@
     },
     "GITHUB": {
       "description": "Your GitHub profile link",
-      "value": "https://github.com/iambuddy01",
+      "value": "https://github.com/karmaxexclusive",
       "required": false
     },
     "DONATE": {
       "description": "Link where people can support/donate",
       "value": "https://t.me/MehExclusive",
-      "required": false
-    },
-    "COOKIE_URL": {
-      "description": "An additional API key for your bot (if needed)",
-      "value": "Need , IF You Didn't add Cookies file in cookies folder",
       "required": false
     },
     "START_IMG_URL": {
