@@ -668,34 +668,25 @@ async def remove_banned_user(user_id: int):
     return await blockeddb.delete_one({"user_id": user_id})
 
 
-# ============================
-# VC LOGGER SUPPORT
-# ============================
-vcloggerdb = mongodb.vclogger  # MongoDB collection
-vclogger = {}  # in-memory cache for chat VC logger status
+# ===================================================
+# 🎤 VC LOGGER DATABASE SUPPORT
+# ===================================================
+
+vcloggerdb = mongodb.vclogger  # Uses your mongo.py client
+vclogger = {}  # cache
 
 async def get_vclogger_status(chat_id: int) -> bool:
-    """
-    Get the VC Logger status for a chat.
-    Returns True if enabled, False otherwise.
-    """
     if chat_id in vclogger:
         return vclogger[chat_id]
-
     data = await vcloggerdb.find_one({"chat_id": chat_id})
-    status = data.get("status", False) if data else False
-    vclogger[chat_id] = status
-    return status
-
+    if not data:
+        vclogger[chat_id] = False
+        return False
+    vclogger[chat_id] = data.get("status", False)
+    return data.get("status", False)
 
 async def set_vclogger_status(chat_id: int, status: bool):
-    """
-    Set the VC Logger status for a chat.
-    Updates in-memory cache and MongoDB.
-    """
     vclogger[chat_id] = status
     await vcloggerdb.update_one(
-        {"chat_id": chat_id},
-        {"$set": {"status": status}},
-        upsert=True
+        {"chat_id": chat_id}, {"$set": {"status": status}}, upsert=True
     )
