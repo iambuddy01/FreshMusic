@@ -1,25 +1,3 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: badboy809075@gmail.com
-
-
 import random
 import asyncio
 from datetime import date
@@ -690,13 +668,39 @@ async def remove_banned_user(user_id: int):
     return await blockeddb.delete_one({"user_id": user_id})
 
 
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+# ===================================================
+# 🎤 VC LOGGER DATABASE SUPPORT
+# ===================================================
 
-# ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
-# ===========================================
+vcloggerdb = mongodb.vclogger
+vclogger = {}
 
 
-# ❤️ Love From ShrutiBots 
+async def get_vclogger_status(chat_id: int) -> bool:
+    """
+    Returns True if VC Logger is enabled for this chat, otherwise False.
+    Uses in-memory cache to reduce DB reads.
+    """
+    if chat_id in vclogger:
+        return vclogger[chat_id]
+
+    data = await vcloggerdb.find_one({"chat_id": chat_id})
+    if not data:
+        vclogger[chat_id] = False
+        return False
+
+    status = data.get("status", False)
+    vclogger[chat_id] = status
+    return status
+
+
+async def set_vclogger_status(chat_id: int, status: bool):
+    """
+    Updates VC Logger status for a chat.
+    """
+    vclogger[chat_id] = status
+    await vcloggerdb.update_one(
+        {"chat_id": chat_id},
+        {"$set": {"status": status}},
+        upsert=True
+    )
