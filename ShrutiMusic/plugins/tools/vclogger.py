@@ -3,7 +3,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from ShrutiMusic import app
 from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.utils.database.vclogger_database import get_vclogger_status, set_vclogger_status
+from ShrutiMusic.utils.database.database import get_vclogger_status, set_vclogger_status
 from ShrutiMusic.core.call import Nand
 
 # ===================================================
