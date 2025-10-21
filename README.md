@@ -106,7 +106,7 @@
 <td align="center" width="33%">
 
 ### 🔥 **ʜᴇʀᴏᴋᴜ**
-<a href="https://dashboard.heroku.com/new?template=https://github.com/karmaxexclusive/FreshMusic">
+<a href="https://dashboard.heroku.com/new?template=https://github.com/iambuddy01/FreshMusic">
 <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-FF0080?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000080" width="220px">
 </a>
 
