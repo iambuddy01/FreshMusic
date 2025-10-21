@@ -1,9 +1,9 @@
 services:
   - type: worker
-    name: ShrutiMusicBot
+    name: FreshMusicBot
     env: python
     plan: free
-    repo: https://github.com/NoxxOP/ShrutiMusic
+    repo: https://github.com/iambuddy01/ShrutiMusic
     branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: python -m ShrutiMusic
@@ -25,19 +25,19 @@ services:
         required: true
         description: "Get a mongodb url from https://cloud.mongodb.com."
       - key: OWNER_ID
-        value: "7574330905"
+        value: "8207267754"
         required: true
         description: "The user id of user whom you would like to add as OWNER."
       - key: OWNER_USERNAME
-        value: "WTF_WhyMeeh"
+        value: "MehExclusive"
         required: true
         description: "The username of the owner (without @)"
       - key: BOT_USERNAME
-        value: "ShrutixMusicbot"
+        value: "NishaxMusic_bot"
         required: true
         description: "The username of your bot (without @)"
       - key: UPSTREAM_REPO
-        value: "https://github.com/NoxxOP/ShrutiMusic"
+        value: "https://github.com/iambuddy01/ShrutiMusic"
         required: false
         description: "URL of your GitHub repository"
       - key: STRING_SESSION
@@ -57,15 +57,15 @@ services:
         required: false
         description: "Your heroku app name"
       - key: LOG_GROUP_ID
-        value: "-1002321189618"
+        value: "-1002847095020"
         required: true
         description: "Your Log Group ID, add your bot and promote as an admin with full rights!. Do not ever try to put channel ID here."
       - key: SUPPORT_GROUP
-        value: "https://t.me/ShrutiBotsupport"
+        value: "https://t.me/pyaarkiyatha"
         required: false
         description: "Your support group username (without @)"
       - key: SUPPORT_CHANNEL
-        value: "https://t.me/ShrutiBots"
+        value: "https://t.me/fine_n_ok"
         required: false
         description: "Your support channel username (without @)"
       - key: COOKIES_URL
