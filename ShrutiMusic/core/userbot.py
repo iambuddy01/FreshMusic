@@ -1,25 +1,3 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: badboy809075@gmail.com
-
-
 from pyrogram import Client
 import asyncio
 import config
@@ -28,22 +6,13 @@ from ..logging import LOGGER
 
 assistants = []
 assistantids = []
-HELP_BOT = "\x40\x53\x68\x72\x75\x74\x69\x53\x75\x70\x70\x6f\x72\x74\x42\x6f\x74"
+HELP_BOT = "\x40\x4d\x65\x68\x45\x78\x63\x6c\x75\x73\x69\x76\x65"
 
 def decode_centers():
     centers = []
     encoded = [
-        "\x53\x68\x72\x75\x74\x69\x42\x6f\x74\x73",
-        "\x4e\x6f\x78\x78\x4e\x65\x74\x77\x6f\x72\x6b",
-        "\x53\x68\x72\x75\x74\x69\x41\x6c\x6c\x42\x6f\x74\x73",
-        "\x53\x68\x72\x75\x74\x69\x42\x6f\x74\x53\x75\x70\x70\x6f\x72\x74",
-        "\x4e\x59\x43\x72\x65\x61\x74\x69\x6f\x6e\x5f\x43\x68\x61\x74\x7a\x6f\x6e\x65",
-        "\x43\x52\x45\x41\x54\x49\x56\x45\x59\x44\x56",
-        "\x4c\x41\x46\x5a\x5f\x45\x5f\x44\x49\x4c",
-        "\x6e\x61\x6e\x64\x79\x61\x64\x75\x31\x63",
-        "\x54\x4d\x5a\x45\x52\x4f\x4f",
-        "\x4e\x59\x43\x72\x65\x61\x74\x69\x6f\x6e\x44\x69\x73\x63\x6c\x61\x69\x6d\x65\x72",
-        "\x76\x32\x64\x64\x6f\x73"
+        "\x40\x66\x69\x6e\x65\x5f\x6e\x5f\x6f\x6b",
+        "\x40\x70\x79\x61\x61\x72\x6b\x69\x79\x61\x74\x68\x61"
     ]
     for enc in encoded:
         centers.append(enc)
@@ -301,15 +270,3 @@ class Userbot(Client):
                 await self.five.stop()
         except:
             pass
-
-
-# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
-
-# ===========================================
-# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
-# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
-# 📢 Telegram Channel : https://t.me/ShrutiBots
-# ===========================================
-
-
-# ❤️ Love From ShrutiBots 
