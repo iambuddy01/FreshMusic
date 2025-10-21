@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=35&duration=2000&pause=1000&color=FF1493&center=true&vCenter=true&width=600&lines=%F0%9D%90%92%F0%9D%90%A1%F0%9D%90%AB%F0%9D%90%AE%F0%9D%90%AD%F0%9D%90%A2+%F0%9D%90%8C%F0%9D%90%AE%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%9C+%F0%9D%90%91%F0%9D%90%9E%F0%9D%90%A9%F0%9D%90%A8;%F0%9D%90%92%F0%9D%90%A1%F0%9D%90%AB%F0%9D%90%AE%F0%9D%90%AD%F0%9D%90%A2+%F0%9D%90%8C%F0%9D%90%AE%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%9C+%F0%9D%90%91%F0%9D%90%9E%F0%9D%90%A9%F0%9D%90%A8;%F0%9D%90%92%F0%9D%90%A1%F0%9D%90%AB%F0%9D%90%AE%F0%9D%90%AD%F0%9D%90%A2+%F0%9D%90%8C%F0%9D%90%AE%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%9C+%F0%9D%90%91%F0%9D%90%9E%F0%9D%90%A9%F0%9D%90%A8" alt="Shruti Music Repo">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=35&duration=2000&pause=1000&color=FF1493&center=true&vCenter=true&width=600&lines=%F0%9D%90%92%F0%9D%90%A1%F0%9D%90%AB%F0%9D%90%AE%F0%9D%90%AD%F0%9D%90%A2+%F0%9D%90%8C%F0%9D%90%AE%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%9C+%F0%9D%90%91%F0%9D%90%9E%F0%9D%90%A9%F0%9D%90%A8;%F0%9D%90%92%F0%9D%90%A1%F0%9D%90%AB%F0%9D%90%AE%F0%9D%90%AD%F0%9D%90%A2+%F0%9D%90%8C%F0%9D%90%AE%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%9C+%F0%9D%90%91%F0%9D%90%9E%F0%9D%90%A9%F0%9D%90%A8;%F0%9D%90%92%F0%9D%90%A1%F0%9D%90%AB%F0%9D%90%AE%F0%9D%90%AD%F0%9D%90%A2+%F0%9D%90%8C%F0%9D%90%AE%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%9C+%F0%9D%90%91%F0%9D%90%9E%F0%9D%90%A9%F0%9D%90%A8" alt="Fresh Music Repo">
 </div>
 
 ---
@@ -85,13 +85,13 @@
   
 ### ᴀ ᴘᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴜsɪᴄ ʙᴏᴛ ᴛᴏ ᴘʟᴀʏ sᴏɴɢs ɪɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛs
   
-[![Support Channel](https://img.shields.io/badge/Support%20Channel-FF0000?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000)](https://t.me/ShrutiBots)
-[![Support Group](https://img.shields.io/badge/Support%20Group-00FF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=FF0000)](https://t.me/ShrutiBotSupport)
-[![Owner](https://img.shields.io/badge/Owner-FFFF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=8A2BE2)](https://t.me/WTF_WhyMeeh)
+[![Support Channel](https://img.shields.io/badge/Support%20Channel-FF0000?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000)](https://t.me/fine_n_ok)
+[![Support Group](https://img.shields.io/badge/Support%20Group-00FF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=FF0000)](https://t.me/pyaarkiyatha)
+[![Owner](https://img.shields.io/badge/Owner-FFFF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=8A2BE2)](https://t.me/MehExclusive)
 
-[![Forks](https://img.shields.io/github/forks/NoxxOP/ShrutiMusic?style=social&logo=github&labelColor=FF1493&color=00CED1)](https://github.com/NoxxOP/ShrutiMusic/fork)
-[![Stars](https://img.shields.io/github/stars/NoxxOP/ShrutiMusic?style=social&logo=github&labelColor=FF4500&color=32CD32)](https://github.com/NoxxOP/ShrutiMusic/stargazers)
-[![Contributors](https://img.shields.io/github/contributors/NoxxOP/ShrutiMusic?style=social&logo=github&labelColor=DC143C&color=FFD700)](https://github.com/NoxxOP/ShrutiMusic/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/karmaxexclusive/FreshMusic?style=social&logo=github&labelColor=FF1493&color=00CED1)](https://github.com/karmaxexclusive/FreshMusic/fork)
+[![Stars](https://img.shields.io/github/stars/karmaxexclusive/FreshMusic?style=social&logo=github&labelColor=FF4500&color=32CD32)](https://github.com/karmaxexclusive/FreshMusic/stargazers)
+[![Contributors](https://img.shields.io/github/contributors/karmaxexclusive/FreshMusic?style=social&logo=github&labelColor=DC143C&color=FFD700)](https://github.com/karmaxexclusive/FreshMusic/graphs/contributors)
 
 </div>
 
@@ -106,7 +106,7 @@
 <td align="center" width="33%">
 
 ### 🔥 **ʜᴇʀᴏᴋᴜ**
-<a href="https://dashboard.heroku.com/new?template=https://github.com/NoxxOP/ShrutiMusic">
+<a href="https://dashboard.heroku.com/new?template=https://github.com/karmaxexclusive/FreshMusic">
 <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-FF0080?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000080" width="220px">
 </a>
 
@@ -116,7 +116,7 @@
 <td align="center" width="33%">
 
 ### ☁️ **ʀᴇɴᴅᴇʀ**
-<a href="https://render.com/deploy?repo=https://github.com/NoxxOP/ShrutiMusic">
+<a href="https://render.com/deploy?repo=https://github.com/karmaxexclusive/FreshMusic">
 <img src="https://img.shields.io/badge/Deploy%20To%20Render-00FF80?style=for-the-badge&logo=render&logoColor=black&labelColor=800080" width="220px">
 </a>
 
@@ -126,7 +126,7 @@
 <td align="center" width="33%">
 
 ### 🎵 **sɪᴍᴘʟᴇ ʙᴏᴛ**
-<a href="https://github.com/NoxxOP/ShrutixMusic">
+<a href="https://github.com/karmaxexclusive/FreshMusic">
 <img src="https://img.shields.io/badge/Simple%20Music%20Bot-FF4000?style=for-the-badge&logo=github&logoColor=white&labelColor=008000" width="220px">
 </a>
 
@@ -216,12 +216,12 @@ sᴏᴜɴᴅᴄʟᴏᴜᴅ • ʟᴏᴄᴀʟ ғɪʟᴇs
 
 <div align="center">
 
-![Repo Size](https://img.shields.io/github/repo-size/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FF1493&labelColor=000080)
-![Issues](https://img.shields.io/github/issues/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FF4500&labelColor=008B8B)
-![Forks](https://img.shields.io/github/forks/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=32CD32&labelColor=8B0000)
-![Stars](https://img.shields.io/github/stars/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FFD700&labelColor=4B0082)
-![License](https://img.shields.io/github/license/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=00CED1&labelColor=DC143C)
-![Last Commit](https://img.shields.io/github/last-commit/NoxxOP/ShrutiMusic?style=flat-square&logo=github&color=FF6347&labelColor=2F4F4F)
+![Repo Size](https://img.shields.io/github/repo-size/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FF1493&labelColor=000080)
+![Issues](https://img.shields.io/github/issues/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FF4500&labelColor=008B8B)
+![Forks](https://img.shields.io/github/forks/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=32CD32&labelColor=8B0000)
+![Stars](https://img.shields.io/github/stars/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FFD700&labelColor=4B0082)
+![License](https://img.shields.io/github/license/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=00CED1&labelColor=DC143C)
+![Last Commit](https://img.shields.io/github/last-commit/karmaxexclusive/FreshMusic?style=flat-square&logo=github&color=FF6347&labelColor=2F4F4F)
 
 </div>
 
@@ -273,7 +273,7 @@ sudo apt-get install -y nodejs
 #### **📂 ᴄʟᴏɴᴇ ʀᴇᴘᴏsɪᴛᴏʀʏ**
 
 ```bash
-git clone https://github.com/NoxxOP/ShrutiMusic
+git clone https://github.com/karmaxexclusive/FreshMusic
 cd ShrutiMusic
 ```
 
@@ -360,7 +360,7 @@ screen -r {screen_id}
 
 <div align="center">
 
-[![Deploy to Heroku](https://img.shields.io/badge/Deploy%20To%20Heroku-FF0080?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000080)](https://dashboard.heroku.com/new?template=https://github.com/NoxxOP/ShrutiMusic)
+[![Deploy to Heroku](https://img.shields.io/badge/Deploy%20To%20Heroku-FF0080?style=for-the-badge&logo=heroku&logoColor=white&labelColor=000080)](https://dashboard.heroku.com/new?template=https://github.com/iambuddy01/FreshMusic)
 
 </div>
 
@@ -424,7 +424,7 @@ screen -r {screen_id}
 
 ### 👨‍💻 **ᴍᴀɪɴ ᴅᴇᴠᴇʟᴏᴘᴇʀ**
 
-[![NoxxOP](https://img.shields.io/badge/NoxxOP-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NoxxOP)
+[![karmaxexclusive](https://img.shields.io/badge/karmaxexclusive-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/karmaxexclusive)
 
 ### 🙏 **sᴘᴇᴄɪᴀʟ ᴛʜᴀɴᴋs**
 
@@ -457,7 +457,7 @@ screen -r {screen_id}
 <td align="center" width="50%">
 
 ### 📢 **sᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ**
-[![Join Channel](https://img.shields.io/badge/Join%20Channel-FF0000?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000)](https://t.me/ShrutiBots)
+[![Join Channel](https://img.shields.io/badge/Join%20Channel-FF0000?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000)](https://t.me/fine_n_ok) 
 
 **ɢᴇᴛ ʟᴀᴛᴇsᴛ ᴜᴘᴅᴀᴛᴇs**
 
@@ -465,7 +465,7 @@ screen -r {screen_id}
 <td align="center" width="50%">
 
 ### 💬 **sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ**
-[![Join Group](https://img.shields.io/badge/Join%20Group-00FF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=FF0000)](https://t.me/ShrutiBotSupport)
+[![Join Group](https://img.shields.io/badge/Join%20Group-00FF00?style=for-the-badge&logo=telegram&logoColor=black&labelColor=FF0000)](https://t.me/pyaarkiyatha)
 
 **24/7 ʜᴇʟᴘ & sᴜᴘᴘᴏʀᴛ**
 
@@ -490,7 +490,7 @@ screen -r {screen_id}
 <td align="center" width="33%">
 
 #### 📚 **ᴅᴏᴄᴜᴍᴇɴᴛᴀᴛɪᴏɴ**
-[![Docs](https://img.shields.io/badge/Read%20Docs-00D9FF?style=for-the-badge&logo=readthedocs&logoColor=white&labelColor=000080)](https://github.com/NoxxOP/ShrutiMusic)
+[![Docs](https://img.shields.io/badge/Read%20Docs-00D9FF?style=for-the-badge&logo=readthedocs&logoColor=white&labelColor=000080)](https://github.com/karmaxexclusive)
 
 **ᴄᴏᴍᴘʟᴇᴛᴇ ɢᴜɪᴅᴇ**
 
