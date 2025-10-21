@@ -666,27 +666,3 @@ async def remove_banned_user(user_id: int):
     if not is_gbanned:
         return
     return await blockeddb.delete_one({"user_id": user_id})
-
-
-# ===================================================
-# 🎤 VC LOGGER DATABASE SUPPORT
-# ===================================================
-
-vcloggerdb = mongodb.vclogger  # Uses your mongo.py client
-vclogger = {}  # cache
-
-async def get_vclogger_status(chat_id: int) -> bool:
-    if chat_id in vclogger:
-        return vclogger[chat_id]
-    data = await vcloggerdb.find_one({"chat_id": chat_id})
-    if not data:
-        vclogger[chat_id] = False
-        return False
-    vclogger[chat_id] = data.get("status", False)
-    return data.get("status", False)
-
-async def set_vclogger_status(chat_id: int, status: bool):
-    vclogger[chat_id] = status
-    await vcloggerdb.update_one(
-        {"chat_id": chat_id}, {"$set": {"status": status}}, upsert=True
-    )
