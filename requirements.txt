@@ -1,5 +1,6 @@
 gTTS
 aiofiles
+requests
 aiohttp
 asyncio
 beautifulsoup4
@@ -29,3 +30,4 @@ unidecode
 yt-dlp
 youtube-search
 youtube-search-python
+
