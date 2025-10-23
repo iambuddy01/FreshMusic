@@ -6,6 +6,7 @@ import requests
 import subprocess
 import asyncio
 from pyrogram import filters
+from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 from ShrutiMusic import app
 from ShrutiMusic.misc import SUDOERS
@@ -35,12 +36,10 @@ def run(cmd, cwd=None):
             return
         raise e
 
-
 async def is_upload_locked():
     """Check if upload is locked in DB."""
     data = await lock_collection.find_one({"_id": "lock_state"})
     return data and data.get("locked", False)
-
 
 async def set_upload_lock(state: bool):
     """Set upload lock in DB."""
@@ -49,7 +48,6 @@ async def set_upload_lock(state: bool):
         {"$set": {"locked": state}},
         upsert=True
     )
-
 
 async def create_repo(token, repo_name, private=True):
     """Create a GitHub repo."""
@@ -65,9 +63,8 @@ async def create_repo(token, repo_name, private=True):
             return f"❌ Failed to create repo:\n`{r.text}`"
     return await asyncio.to_thread(_create)
 
-
-async def upload_to_github(username, email, token, zip_path, repo_name, branch="main", private=True, msg: Message = None):
-    """Upload ZIP content to GitHub with watermark and progress updates."""
+async def upload_to_github(username, email, token, zip_path, repo_name, branch="main", private=True, message=None):
+    """Upload ZIP content to GitHub with watermark and Telegram progress."""
     temp_dir = tempfile.mkdtemp()
     await asyncio.to_thread(zipfile.ZipFile(zip_path, "r").extractall, temp_dir)
 
@@ -79,16 +76,16 @@ async def upload_to_github(username, email, token, zip_path, repo_name, branch="
             shutil.move(os.path.join(nested, f), temp_dir)
         shutil.rmtree(nested)
 
-    # Add watermark to every .py file with progress
-    py_files = []
-    for root, _, files in os.walk(temp_dir):
-        for file in files:
-            if file.endswith(".py"):
-                py_files.append(os.path.join(root, file))
+    # Gather all .py files
+    py_files = [
+        os.path.join(root, file)
+        for root, _, files in os.walk(temp_dir)
+        for file in files if file.endswith(".py")
+    ]
 
-    total_files = len(py_files)
-    if msg:
-        progress = await msg.reply_text("💾 Watermarking files… 0%")
+    # Telegram progress message
+    if message:
+        progress_msg = await message.reply_text("💧 Watermarking files 0%")
 
     for i, file_path in enumerate(py_files, 1):
         try:
@@ -102,16 +99,19 @@ async def upload_to_github(username, email, token, zip_path, repo_name, branch="
                 code += bottom
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(code)
-        except Exception as e:
-            if msg:
-                await msg.edit(f"❌ Error watermarking `{os.path.basename(file_path)}`:\n`{e}`")
-            continue
+        except Exception:
+            pass
 
-        if msg:
-            percent = int(i / total_files * 100)
-            await msg.edit(f"💾 Watermarking files… {percent}%")
+        # Update Telegram progress every 5% or on last file
+        percent = (i * 100) // len(py_files)
+        if message and (percent % 5 == 0 or percent == 100):
+            try:
+                await progress_msg.edit_text(f"💧 Watermarking files {percent}%")
+            except FloodWait as e:
+                await asyncio.sleep(e.value)
+            except Exception:
+                pass
 
-    # GitHub upload
     repo_url = f"https://{token}@github.com/{username}/{repo_name}.git"
 
     def _git_ops():
@@ -155,7 +155,6 @@ async def git_config(_, message: Message):
     if user_id in GIT_CONFIG:
         del GIT_CONFIG[user_id]
 
-
 @app.on_message(filters.command("gitupload"))
 async def git_upload(_, message: Message):
     """Upload replied ZIP to GitHub repo."""
@@ -183,18 +182,17 @@ async def git_upload(_, message: Message):
     zip_path = await message.reply_to_message.download()
     progress_msg = await message.reply_text("📤 **Uploading to GitHub... Please wait!**")
 
+    result_msg = await create_repo(creds["token"], repo_name, private)
     try:
-        result_msg = await create_repo(creds["token"], repo_name, private)
         upload_msg = await upload_to_github(
             creds["username"], creds["email"], creds["token"],
-            zip_path, repo_name, branch, private, msg=progress_msg
+            zip_path, repo_name, branch, private, message=progress_msg
         )
-        await progress_msg.edit(f"{result_msg}\n\n{upload_msg}")
+        await progress_msg.edit_text(f"{result_msg}\n\n{upload_msg}")
     except Exception as e:
-        await progress_msg.edit(f"❌ **Upload failed:**\n`{e}`")
+        await progress_msg.edit_text(f"❌ **Upload failed:**\n`{e}`")
     finally:
         os.remove(zip_path)
-
 
 @app.on_message(filters.command("gitlock") & filters.user(OWNER_ID))
 async def git_lock(_, message: Message):
@@ -202,9 +200,9 @@ async def git_lock(_, message: Message):
     await set_upload_lock(True)
     await message.reply_text("🔒 **Git upload locked!** Only Owner can unlock it.")
 
-
 @app.on_message(filters.command("gitunlock") & filters.user(OWNER_ID))
 async def git_unlock(_, message: Message):
     """Unlock public uploads (Owner only)."""
     await set_upload_lock(False)
     await message.reply_text("🔓 **Git upload unlocked!** Public users can use `/gitupload` again.")
+
