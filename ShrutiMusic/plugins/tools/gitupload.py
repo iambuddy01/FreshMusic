@@ -13,7 +13,7 @@ from config import OWNER_ID
 from motor.motor_asyncio import AsyncIOMotorClient
 
 # MongoDB setup (persistent lock)
-MONGO_URL = os.getenv("MONGO_URL")
+MONGO_URL = os.getenv("MONGO_DB_URI")
 mongo_client = AsyncIOMotorClient(MONGO_URL)
 db = mongo_client["ShrutiMusic"]
 lock_collection = db["git_upload_lock"]
@@ -66,8 +66,8 @@ async def create_repo(token, repo_name, private=True):
     return await asyncio.to_thread(_create)
 
 
-async def upload_to_github(username, email, token, zip_path, repo_name, branch="main", private=True):
-    """Upload ZIP content to GitHub with watermark."""
+async def upload_to_github(username, email, token, zip_path, repo_name, branch="main", private=True, msg: Message = None):
+    """Upload ZIP content to GitHub with watermark and progress updates."""
     temp_dir = tempfile.mkdtemp()
     await asyncio.to_thread(zipfile.ZipFile(zip_path, "r").extractall, temp_dir)
 
@@ -79,25 +79,39 @@ async def upload_to_github(username, email, token, zip_path, repo_name, branch="
             shutil.move(os.path.join(nested, f), temp_dir)
         shutil.rmtree(nested)
 
-    # Add watermark to every .py file
+    # Add watermark to every .py file with progress
+    py_files = []
     for root, _, files in os.walk(temp_dir):
         for file in files:
             if file.endswith(".py"):
-                file_path = os.path.join(root, file)
-                try:
-                    with open(file_path, "r", encoding="utf-8") as f:
-                        code = f.read()
-                    top = "# ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ © github.com\n"
-                    bottom = "\n\nfrom Love 🎀 #ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ\n"
-                    if not code.strip().startswith("# ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ"):
-                        code = top + code
-                    if not code.strip().endswith("#ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ"):
-                        code += bottom
-                    with open(file_path, "w", encoding="utf-8") as f:
-                        f.write(code)
-                except Exception:
-                    pass
+                py_files.append(os.path.join(root, file))
 
+    total_files = len(py_files)
+    if msg:
+        progress = await msg.reply_text("💾 Watermarking files… 0%")
+
+    for i, file_path in enumerate(py_files, 1):
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                code = f.read()
+            top = "# ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ © github.com\n"
+            bottom = "\n\nfrom Love 🎀 #ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ\n"
+            if not code.strip().startswith("# ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ"):
+                code = top + code
+            if not code.strip().endswith("#ᴀʟʟʙᴏᴛsᴜᴘᴘᴏʀᴛ"):
+                code += bottom
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(code)
+        except Exception as e:
+            if msg:
+                await msg.edit(f"❌ Error watermarking `{os.path.basename(file_path)}`:\n`{e}`")
+            continue
+
+        if msg:
+            percent = int(i / total_files * 100)
+            await msg.edit(f"💾 Watermarking files… {percent}%")
+
+    # GitHub upload
     repo_url = f"https://{token}@github.com/{username}/{repo_name}.git"
 
     def _git_ops():
@@ -167,17 +181,17 @@ async def git_upload(_, message: Message):
     creds = GIT_CONFIG[user_id]
 
     zip_path = await message.reply_to_message.download()
-    await message.reply_text("📤 **Uploading to GitHub... Please wait!**")
+    progress_msg = await message.reply_text("📤 **Uploading to GitHub... Please wait!**")
 
-    result_msg = await create_repo(creds["token"], repo_name, private)
     try:
+        result_msg = await create_repo(creds["token"], repo_name, private)
         upload_msg = await upload_to_github(
             creds["username"], creds["email"], creds["token"],
-            zip_path, repo_name, branch, private
+            zip_path, repo_name, branch, private, msg=progress_msg
         )
-        await message.reply_text(f"{result_msg}\n\n{upload_msg}")
+        await progress_msg.edit(f"{result_msg}\n\n{upload_msg}")
     except Exception as e:
-        await message.reply_text(f"❌ **Upload failed:**\n`{e}`")
+        await progress_msg.edit(f"❌ **Upload failed:**\n`{e}`")
     finally:
         os.remove(zip_path)
 
