@@ -1,6 +1,6 @@
 import random
 from pyrogram import Client, filters
-from FreshMusic.mongo import mongodb
+from ShrutiMusic.core.mongo import mongodb
 
 # MongoDB collection
 dickdb = mongodb.dickdata
