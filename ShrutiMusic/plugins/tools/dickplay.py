@@ -1,81 +1,95 @@
 import random
 from pyrogram import Client, filters
-from pyrogram.types import Message
-from ShrutiMusic.core.mongo import mongodb  # ✅ your existing Mongo connection
+from FreshMusic.mongo import mongodb
 
-# Mongo collection for dick sizes
-dickdb = mongodb.dickplay
+# MongoDB collection
+dickdb = mongodb.dickdata
 
-# Helper: get user’s size (default = 10cm)
-async def get_size(user_id: int) -> float:
+
+@Client.on_message(filters.command("grow", prefixes="/"))
+async def grow_dick(client, message):
+    user_id = message.from_user.id
     user = await dickdb.find_one({"user_id": user_id})
-    return user["size"] if user else 10.0
 
-# Helper: update size
-async def update_size(user_id: int, new_size: float):
-    await dickdb.update_one(
-        {"user_id": user_id},
-        {"$set": {"size": new_size}},
-        upsert=True
-    )
-
-# 🍆 /grow — grow your size
-@Client.on_message(filters.command("grow", prefixes=".") & ~filters.edited)
-async def grow_dick(client: Client, message: Message):
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
-
-    growth = round(random.uniform(0.1, 5.0), 2)
-    old_size = await get_size(user_id)
-    new_size = round(old_size + growth, 2)
-    await update_size(user_id, new_size)
+    growth = random.randint(1, 5)
+    if not user:
+        length = 5 + growth
+        await dickdb.insert_one({"user_id": user_id, "length": length})
+    else:
+        length = user["length"] + growth
+        await dickdb.update_one({"user_id": user_id}, {"$set": {"length": length}})
 
     await message.reply_text(
-        f"🍆 {user_name}'s dick grew by {growth} cm!\n"
-        f"📏 Current size: {new_size} cm"
+        f"🍆 Your dick grew by {growth} cm!\nNow it's **{length} cm** long!"
     )
 
-# 🥶 /shrink — shrink your size
-@Client.on_message(filters.command("shrink", prefixes=".") & ~filters.edited)
-async def shrink_dick(client: Client, message: Message):
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
 
-    shrink = round(random.uniform(0.1, 3.0), 2)
-    old_size = await get_size(user_id)
-    new_size = max(1.0, round(old_size - shrink, 2))
-    await update_size(user_id, new_size)
+@Client.on_message(filters.command("shrink", prefixes="/"))
+async def shrink_dick(client, message):
+    user_id = message.from_user.id
+    user = await dickdb.find_one({"user_id": user_id})
+
+    if not user:
+        await message.reply_text("🍆 You don't have a dick yet! Use /grow first.")
+        return
+
+    shrink = random.randint(1, 4)
+    new_length = max(0, user["length"] - shrink)
+    await dickdb.update_one({"user_id": user_id}, {"$set": {"length": new_length}})
 
     await message.reply_text(
-        f"🥶 {user_name}'s dick shrunk by {shrink} cm!\n"
-        f"📏 Current size: {new_size} cm"
+        f"😢 Your dick shrank by {shrink} cm!\nNow it's **{new_length} cm** long!"
     )
 
-# 📊 /stats — show your current size
-@Client.on_message(filters.command("stats", prefixes=".") & ~filters.edited)
-async def check_stats(client: Client, message: Message):
+
+@Client.on_message(filters.command("dick", prefixes="/"))
+async def check_dick(client, message):
     user_id = message.from_user.id
-    user_name = message.from_user.first_name
-    size = await get_size(user_id)
+    user = await dickdb.find_one({"user_id": user_id})
 
-    await message.reply_text(f"📊 {user_name}'s current size: {size} cm 🍆")
+    if not user:
+        await message.reply_text("🍆 You don’t have a dick yet! Use /grow to start growing it!")
+    else:
+        await message.reply_text(f"🍆 Your current dick size is **{user['length']} cm**.")
 
-# 🏆 /top — top 10 users by size
-@Client.on_message(filters.command("top", prefixes=".") & ~filters.edited)
-async def leaderboard(client: Client, message: Message):
-    top_users = dickdb.find().sort("size", -1).limit(10)
-    leaderboard_text = "🏆 **Top 10 Dicks:**\n\n"
-    rank = 1
 
-    async for user in top_users:
-        try:
-            name = (await client.get_users(user["user_id"])).first_name
-        except:
-            name = "Unknown User"
-        leaderboard_text += f"{rank}. {name}: {user['size']} cm 🍆\n"
-        rank += 1
+@Client.on_message(filters.command("compare", prefixes="/"))
+async def compare_dick(client, message):
+    if not message.reply_to_message:
+        await message.reply_text("Reply to someone to compare dicks 🍆")
+        return
 
-    if rank == 1:
-        leaderboard_text = "No stats recorded yet!"
+    user1_id = message.from_user.id
+    user2_id = message.reply_to_message.from_user.id
 
-    await message.reply_text(leaderboard_text)
+    user1 = await dickdb.find_one({"user_id": user1_id})
+    user2 = await dickdb.find_one({"user_id": user2_id})
+
+    if not user1 or not user2:
+        await message.reply_text("Both users need to have grown their dicks first using /grow.")
+        return
+
+    if user1["length"] > user2["length"]:
+        await message.reply_text("🍆 You’re packing more! You win 😎")
+    elif user1["length"] < user2["length"]:
+        await message.reply_text("😢 You lost! The other one is bigger.")
+    else:
+        await message.reply_text("😳 It's a tie! Both are the same size 🍆")
+
+
+@Client.on_message(filters.command("dickhelp", prefixes="/"))
+async def dick_help(client, message):
+    help_text = """
+🍆 **DickPlay Command Help**
+
+Here’s how to use the DickPlay module:
+
+/grow — Grow your 🍆 randomly  
+/shrink — Shrink your 🍆 randomly  
+/dick — Check your current 🍆 size  
+/compare — Reply to someone to compare your 🍆 size  
+/dickhelp — Show this help message
+
+💾 Your progress is automatically saved in MongoDB.
+"""
+    await message.reply_text(help_text, disable_web_page_preview=True)
