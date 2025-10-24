@@ -1,10 +1,10 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 import random
-from ShrutiMusic.core.mongo import mongodb  # ensure it's async (Motor)
+from ShrutiMusic.core.mongo import mongodb  # Must be async Motor client
 
 # -----------------------------
-# Helper function to send errors
+# Helper to safely send messages
 async def safe_send(message: Message, text: str):
     try:
         await message.reply_text(text)
@@ -15,12 +15,14 @@ async def safe_send(message: Message, text: str):
 # /grow command
 @Client.on_message(filters.command("grow", prefixes="/"))
 async def grow(client: Client, message: Message):
+    print(f"[DEBUG] /grow command triggered by {message.from_user.id}")
     if message.chat.type == "private":
         await safe_send(message, "This command can only be used in groups!")
         return
     try:
         size = random.randint(1, 20)
         await safe_send(message, f"{message.from_user.first_name}'s 🍆 grew to {size} cm!")
+
         try:
             result = await mongodb.dick_sizes.update_one(
                 {"user_id": message.from_user.id},
@@ -38,6 +40,7 @@ async def grow(client: Client, message: Message):
 # /dick command
 @Client.on_message(filters.command("dick", prefixes="/"))
 async def dick(client: Client, message: Message):
+    print(f"[DEBUG] /dick command triggered by {message.from_user.id}")
     if message.chat.type == "private":
         await safe_send(message, "This command can only be used in groups!")
         return
@@ -48,6 +51,7 @@ async def dick(client: Client, message: Message):
             doc = None
             print(f"[MongoDB Error] {db_error}")
             await safe_send(message, f"⚠️ DB Error: {db_error}")
+
         size = doc["size"] if doc else random.randint(1, 20)
         await safe_send(message, f"{message.from_user.first_name}'s current 🍆 size is {size} cm")
     except Exception as e:
@@ -57,6 +61,7 @@ async def dick(client: Client, message: Message):
 # /compare command
 @Client.on_message(filters.command("compare", prefixes="/"))
 async def compare(client: Client, message: Message):
+    print(f"[DEBUG] /compare command triggered by {message.from_user.id}")
     if message.chat.type == "private":
         await safe_send(message, "This command can only be used in groups!")
         return
@@ -93,6 +98,7 @@ async def compare(client: Client, message: Message):
 # /fight command
 @Client.on_message(filters.command("fight", prefixes="/"))
 async def fight(client: Client, message: Message):
+    print(f"[DEBUG] /fight command triggered by {message.from_user.id}")
     if message.chat.type == "private":
         await safe_send(message, "This command can only be used in groups!")
         return
@@ -115,6 +121,7 @@ async def fight(client: Client, message: Message):
 # /dtop command
 @Client.on_message(filters.command("dtop", prefixes="/"))
 async def dtop(client: Client, message: Message):
+    print(f"[DEBUG] /dtop command triggered by {message.from_user.id}")
     if message.chat.type == "private":
         await safe_send(message, "This command can only be used in groups!")
         return
@@ -138,6 +145,7 @@ async def dtop(client: Client, message: Message):
 # /dhelp command
 @Client.on_message(filters.command("dhelp", prefixes="/"))
 async def dhelp(client: Client, message: Message):
+    print(f"[DEBUG] /dhelp command triggered by {message.from_user.id}")
     try:
         help_text = (
             "/grow — Grow your 🍆 randomly\n"
