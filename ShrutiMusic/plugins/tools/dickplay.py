@@ -1,95 +1,160 @@
-import random
 from pyrogram import Client, filters
+from pyrogram.types import Message
 from ShrutiMusic.core.mongo import mongodb
+import random
+import logging
 
-# MongoDB collection
-dickdb = mongodb.dickdata
+LOGGER = logging.getLogger(__name__)
 
+dickdb = mongodb.dickdata  # MongoDB collection
 
-@Client.on_message(filters.command("grow", prefixes="/"))
-async def grow_dick(client, message):
-    user_id = message.from_user.id
-    user = await dickdb.find_one({"user_id": user_id})
+# --------------------------
+# /grow — Grow your 🍆 randomly
+# --------------------------
+@Client.on_message(filters.command("grow", prefixes="/") & ~filters.edited)
+async def grow_dick(client: Client, message: Message):
+    try:
+        if message.chat.type == "private":
+            await message.reply_text("❌ This command can only be used in groups!")
+            return
 
-    growth = random.randint(1, 5)
-    if not user:
-        length = 5 + growth
-        await dickdb.insert_one({"user_id": user_id, "length": length})
-    else:
-        length = user["length"] + growth
-        await dickdb.update_one({"user_id": user_id}, {"$set": {"length": length}})
+        user_id = message.from_user.id
+        user = await dickdb.find_one({"user_id": user_id})
+        new_size = random.randint(1, 25)
+        if user:
+            await dickdb.update_one({"user_id": user_id}, {"$set": {"size": new_size}})
+        else:
+            await dickdb.insert_one({"user_id": user_id, "size": new_size})
 
-    await message.reply_text(
-        f"🍆 Your dick grew by {growth} cm!\nNow it's **{length} cm** long!"
-    )
+        await message.reply_text(f"🍆 {message.from_user.first_name}'s dick size is **{new_size} cm**!")
 
+    except Exception as e:
+        LOGGER.exception(f"Error in /grow: {e}")
+        await message.reply_text(f"⚠️ An error occurred: {e}")
 
-@Client.on_message(filters.command("shrink", prefixes="/"))
-async def shrink_dick(client, message):
-    user_id = message.from_user.id
-    user = await dickdb.find_one({"user_id": user_id})
+# --------------------------
+# /fight - Tag someone to fight
+# --------------------------
+@Client.on_message(filters.command("fight", prefixes="/") & ~filters.edited)
+async def dick_fight(client: Client, message: Message):
+    try:
+        if message.chat.type == "private":
+            await message.reply_text("❌ This command can only be used in groups!")
+            return
 
-    if not user:
-        await message.reply_text("🍆 You don't have a dick yet! Use /grow first.")
-        return
+        if not message.reply_to_message:
+            await message.reply_text("❌ Reply to someone's message to fight them!")
+            return
 
-    shrink = random.randint(1, 4)
-    new_length = max(0, user["length"] - shrink)
-    await dickdb.update_one({"user_id": user_id}, {"$set": {"length": new_length}})
+        user1_id = message.from_user.id
+        user2_id = message.reply_to_message.from_user.id
 
-    await message.reply_text(
-        f"😢 Your dick shrank by {shrink} cm!\nNow it's **{new_length} cm** long!"
-    )
+        # Ensure both users have sizes
+        for uid in [user1_id, user2_id]:
+            user = await dickdb.find_one({"user_id": uid})
+            if not user:
+                size = random.randint(1, 25)
+                await dickdb.insert_one({"user_id": uid, "size": size})
 
+        u1 = await dickdb.find_one({"user_id": user1_id})
+        u2 = await dickdb.find_one({"user_id": user2_id})
 
-@Client.on_message(filters.command("dick", prefixes="/"))
-async def check_dick(client, message):
-    user_id = message.from_user.id
-    user = await dickdb.find_one({"user_id": user_id})
+        winner = message.from_user.first_name if u1["size"] >= u2["size"] else message.reply_to_message.from_user.first_name
+        fight_text = (
+            f"⚔️ **Fight Results:**\n\n"
+            f"{message.from_user.first_name}: {u1['size']} cm\n"
+            f"{message.reply_to_message.from_user.first_name}: {u2['size']} cm\n\n"
+            f"🏆 Winner: {winner}!"
+        )
+        await message.reply_text(fight_text)
 
-    if not user:
-        await message.reply_text("🍆 You don’t have a dick yet! Use /grow to start growing it!")
-    else:
-        await message.reply_text(f"🍆 Your current dick size is **{user['length']} cm**.")
+    except Exception as e:
+        LOGGER.exception(f"Error in /fight: {e}")
+        await message.reply_text(f"⚠️ An error occurred: {e}")
 
+# --------------------------
+# /dick — Check your current 🍆 size
+# --------------------------
+@Client.on_message(filters.command("dick", prefixes="/") & ~filters.edited)
+async def check_dick(client: Client, message: Message):
+    try:
+        if message.chat.type == "private":
+            await message.reply_text("❌ This command can only be used in groups!")
+            return
 
-@Client.on_message(filters.command("compare", prefixes="/"))
-async def compare_dick(client, message):
-    if not message.reply_to_message:
-        await message.reply_text("Reply to someone to compare dicks 🍆")
-        return
+        user_id = message.from_user.id
+        user = await dickdb.find_one({"user_id": user_id})
+        if not user:
+            await message.reply_text("❌ You don't have a size yet! Use /grow first.")
+            return
 
-    user1_id = message.from_user.id
-    user2_id = message.reply_to_message.from_user.id
+        await message.reply_text(f"🍆 {message.from_user.first_name}'s current size: **{user['size']} cm**!")
 
-    user1 = await dickdb.find_one({"user_id": user1_id})
-    user2 = await dickdb.find_one({"user_id": user2_id})
+    except Exception as e:
+        LOGGER.exception(f"Error in /dick: {e}")
+        await message.reply_text(f"⚠️ An error occurred: {e}")
 
-    if not user1 or not user2:
-        await message.reply_text("Both users need to have grown their dicks first using /grow.")
-        return
+# --------------------------
+# /compare — Compare with someone
+# --------------------------
+@Client.on_message(filters.command("compare", prefixes="/") & ~filters.edited)
+async def compare_dick(client: Client, message: Message):
+    try:
+        if message.chat.type == "private":
+            await message.reply_text("❌ This command can only be used in groups!")
+            return
 
-    if user1["length"] > user2["length"]:
-        await message.reply_text("🍆 You’re packing more! You win 😎")
-    elif user1["length"] < user2["length"]:
-        await message.reply_text("😢 You lost! The other one is bigger.")
-    else:
-        await message.reply_text("😳 It's a tie! Both are the same size 🍆")
+        if not message.reply_to_message:
+            await message.reply_text("❌ Reply to someone's message to compare sizes!")
+            return
 
+        user1_id = message.from_user.id
+        user2_id = message.reply_to_message.from_user.id
 
-@Client.on_message(filters.command("dickhelp", prefixes="/"))
-async def dick_help(client, message):
-    help_text = """
-🍆 **DickPlay Command Help**
+        u1 = await dickdb.find_one({"user_id": user1_id})
+        u2 = await dickdb.find_one({"user_id": user2_id})
 
-Here’s how to use the DickPlay module:
+        if not u1:
+            await message.reply_text("❌ You don't have a size yet! Use /grow first.")
+            return
+        if not u2:
+            await message.reply_to_message.reply_text("❌ They don't have a size yet! Ask them to use /grow first.")
+            return
 
-/grow — Grow your 🍆 randomly  
-/shrink — Shrink your 🍆 randomly  
-/dick — Check your current 🍆 size  
-/compare — Reply to someone to compare your 🍆 size  
-/dickhelp — Show this help message
+        if u1["size"] > u2["size"]:
+            result = f"💪 {message.from_user.first_name} wins!"
+        elif u1["size"] < u2["size"]:
+            result = f"💪 {message.reply_to_message.from_user.first_name} wins!"
+        else:
+            result = "🤝 It's a tie!"
 
-💾 Your progress is automatically saved in MongoDB.
-"""
-    await message.reply_text(help_text, disable_web_page_preview=True)
+        compare_text = (
+            f"🍆 **Comparison:**\n\n"
+            f"{message.from_user.first_name}: {u1['size']} cm\n"
+            f"{message.reply_to_message.from_user.first_name}: {u2['size']} cm\n\n"
+            f"{result}"
+        )
+        await message.reply_text(compare_text)
+
+    except Exception as e:
+        LOGGER.exception(f"Error in /compare: {e}")
+        await message.reply_text(f"⚠️ An error occurred: {e}")
+
+# --------------------------
+# /dickhelp — Show help
+# --------------------------
+@Client.on_message(filters.command("dickhelp", prefixes="/") & ~filters.edited)
+async def dick_help(client: Client, message: Message):
+    try:
+        help_text = (
+            "🍆 **DickGrowerBot Commands:**\n\n"
+            "/grow — Grow your 🍆 randomly\n"
+            "/fight — Reply to someone to fight and see who wins\n"
+            "/dick — Check your current 🍆 size\n"
+            "/compare — Reply to someone to compare sizes\n"
+            "/dickhelp — Show this help message"
+        )
+        await message.reply_text(help_text)
+    except Exception as e:
+        LOGGER.exception(f"Error in /dickhelp: {e}")
+        await message.reply_text(f"⚠️ An error occurred: {e}")
