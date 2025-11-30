@@ -4,8 +4,8 @@
 import asyncio
 import re
 from pyrogram import filters, types, enums
-from FreshMusic import app
-from FreshMusic.core.mongo import mongodb
+from ShurtiMusic import app
+from ShrutiMusic.core.mongo import mongodb
 
 # --------------------------
 # Lock Types
